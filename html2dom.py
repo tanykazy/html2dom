@@ -22,8 +22,9 @@ class Html2dom(HTMLParser):
         self.__elements.append(element)
 
     def handle_endtag(self, tag):
-        element = self.__elements.pop()
-        self.__elements[-1].appendChild(element)
+        if(len(self.__elements) > 1):
+            element = self.__elements.pop()
+            self.__elements[-1].appendChild(element)
 
     def handle_data(self, data):
         if(len(self.__elements) > 0):
